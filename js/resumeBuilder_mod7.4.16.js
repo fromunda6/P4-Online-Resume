@@ -1,10 +1,10 @@
 /*Action Items - Req'd to pass this project:
+	1). add missing attr/value pairs to sections, most notable absent in EDU:online courses
+	2). Encapsulate display functions inside respective objects
+	3). Iterate over each display function using for-each loops only
 	4). add a map per instructions in "Proj Prep:Proj Details"
-
 	5). Add project images
-
 	6). Run all code through validators (see proj details,rubric again here)
-
 	7). Clean up directory, syncUp GitHub, and submit
 */
 
@@ -22,11 +22,11 @@ var bio = {
 	"skills" : [
 		"SQL", "Python", "Statistics", "Research"
 	],
-	"picture" : "images/selfie_1.webp"
+	"picture" : "images/selfie_1.webp",
 }
 // 'hooking' new JS vars to JS-helper VARS, which are in turn assigned to html 'templates',
 // & displaying the previously created JS VARS by appending/prepending to HTML sections
-bio.display = function() {
+function displayBio(){
 	var formattedName = HTMLheaderName.replace("%data%", bio.name);
 	$("#header").prepend(formattedName);
 
@@ -58,7 +58,8 @@ bio.display = function() {
 	var formattedPic = HTMLbioPic.replace("%data%", bio.picture);
 	$("#header").append(formattedPic);
 }
-bio.display();
+displayBio();
+
 
 // creating object2: "work"
 var work = {
@@ -80,8 +81,8 @@ var work = {
   ]
 }
 // wrapping the displaying of work history inside a function
-work.display= function() {
-	for (job=0; job < work.jobs.length; job++) { //both defines the loop and 'tags' each array-object as a "job"
+work.display = function() {
+	for (job in work.jobs) { //both defines the loop and 'tags' each array-object as a "job"
 	 	$("#workExperience").append(HTMLworkStart);
 
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
@@ -98,10 +99,32 @@ work.display= function() {
 		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
 		$(".work-entry:last").append(formattedDescription);
 	}
+	return work.display;
 }
-work.display();
+work.display;
 
-// creating object3: "projects" with object literal notation
+
+// creating object3: "education" in array notation
+var education = {};
+	education["name"] = "University of Colorado, Denver";
+	education["schoolDates"] = "2004-2007";
+	education["schoolLocation"] = "Denver, CO";
+
+// wrapping the displaying of school history inside a function
+function displayEdu() {
+	var formattedschoolName = HTMLschoolName.replace("%data%", education["name"]);
+	$("#main").append(formattedschoolName);
+
+	var formattedschoolDates = HTMLschoolDates.replace("%data%", education["schoolDates"]);
+	$("#main").append(formattedschoolDates);
+
+	var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education["schoolLocation"]);
+	$("#main").append(formattedschoolLocation);
+}
+displayEdu();
+
+
+// creating object4: "projects" with object literal notation
 var projects = {
 	"Udacity": [
 	{
@@ -124,8 +147,8 @@ var projects = {
 // demonstrating encapsulation, &
 // loop-assisted iteration-action over all key-value pairs in object.array
 // projects.udacity
-projects.display= function() {
-	for (project = 0; project < projects.Udacity.length; project++) {
+function displayProj() {
+	for (project in projects.Udacity) {
 		$("#projects").append(HTMLprojectStart); //to the 'projects' <div>, append the <div> 'HTMLprojectStart',
 		// which is == to the div "project-entry", which if empty, causes the 'projects' div to display:none...(?)
 
@@ -139,76 +162,7 @@ projects.display= function() {
 		$(".project-entry:last").append(formattedprojDesc);
 	}
 }
-projects.display(); //calls the encapsulated function
-
-//creating object4: "education" in array notation
-var education = {
-	"schools": [
-		{
-			"name" : "University of Colorado, Denver",
-			"location" : "Denver, CO",
-			"degree" : "Bachelor of Arts",
-			"major" : "Economics",
-			"dates" : "2004-2007",
-			"url" : "http://www.ucdenver.edu/"
-		}
-	],
-	"onlineCourses": [
-		{
-			"title" : "Front-End Web Developer Nanodegree",
-			"school" : "Udacity",
-			"dates" : "2016",
-			"url" : "https://www.udacity.com/"
-		},
-		{
-			"title" : "Introduction to Computer Science",
-			"school" : "Udacity",
-			"dates" : "2016",
-			"url" : "https://www.udacity.com/"
-		}
-	]
-}
-// wrapping the displaying of school history inside a function
-education.display= function() {
-	for (college=0; college < education.schools.length; college++) {
-		$("#education").append(HTMLschoolStart);
-
-		var formattedschoolName = HTMLschoolName.replace("%data%", education.schools[college].name);
-		$(".education-entry:last").append(formattedschoolName);
-
-		var formattedschoolDegree = HTMLschoolDegree.replace("%data%", education.schools[college].degree);
-		$(".education-entry:last").append(formattedschoolDegree); //...:last ensures that the appending
-		//always occurs on the last object associated with .education-entry, and that no info is overwritten
-
-		var formattedschoolDates = HTMLschoolDates.replace("%data%", education.schools[college].dates);
-		$(".education-entry:last").append(formattedschoolDates);
-
-		var formattedschoolLocation = HTMLschoolLocation.replace("%data%", education.schools[college].location);
-		$(".education-entry:last").append(formattedschoolLocation);
-
-		var formattedschoolMajor = HTMLschoolMajor.replace("%data%", education.schools[college].major);
-		$(".education-entry:last").append(formattedschoolMajor);
-	}
-	$("#education").append(HTMLonlineClasses);
-	for (course=0; course < education.onlineCourses.length; course++) {
-
-		var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
-		$("h3:last").append(formattedOnlineTitle);
-
-		var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
-		$("h3:last").append(formattedOnlineSchool);
-
-		var formattedOnlineDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].dates);
-		$("h3:last").append(formattedOnlineDates);
-
-		var formattedOnlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
-		$("h3:last").append(formattedOnlineURL);
-	}
-};
-education.display();
-
-// adding formatted map to associated div
-$("#mapDiv").append(googleMap);
+displayProj(); //calls the
 
 
 
