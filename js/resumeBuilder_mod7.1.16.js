@@ -1,7 +1,7 @@
-/*Action Items - Req'd to pass this project:
+/*Action Items:
 	4). add a map per instructions in "Proj Prep:Proj Details"
 
-	5). Add project images
+	5.5) customize a few more things (br colors, fonts, header layout(?)
 
 	6). Run all code through validators (see proj details,rubric again here)
 
@@ -60,6 +60,10 @@ bio.display = function() {
 }
 bio.display();
 
+// while a "for" loop is desirable where possible, the bio.object is not suited to this kind of looping as an object due
+// too the possibility of "open-ended" code
+
+
 // creating object2: "work"
 var work = {
 	"jobs": [
@@ -101,23 +105,30 @@ work.display= function() {
 }
 work.display();
 
+
 // creating object3: "projects" with object literal notation
 var projects = {
 	"Udacity": [
 	{
-		"name": "Interactive Portfolio",
+		"name": "Sunchaser",
 		"dates": "2016",
-		"description": "A well-designed adventure through my coding achievements"
+		"description": "A nifty app to aid in landscape & architecture decision-making",
+		"image": "images/MntGraphic.png"
 	},
 	{
 		"name": "Arcade Game Clone",
 		"dates": "2016",
-		"description": "A recreation of a classic arcade game, demonstrating some mastery of JS"
+		"description": "A recreation of a classic arcade game, demonstrating some mastery of JS",
+		"image": "images/game.jpg"
+
 	},
 	{
 		"name": "Neighborhood Map",
 		"dates": "2016",
-		"description": "An interactive map of the most important sites in my neighborhood"
+		"description": "An interactive map of the most important sites in my neighborhood",
+		"image": "images/city.jpg"
+
+
 	}
   ]
 }
@@ -137,16 +148,24 @@ projects.display= function() {
 
 		var formattedprojDesc = HTMLprojectDescription.replace("%data%", projects.Udacity[project].description);
 		$(".project-entry:last").append(formattedprojDesc);
+
+		var formattedprojImage = HTMLprojectImage.replace("%data%", projects.Udacity[project].image);
+		$(".project-entry:last").append(formattedprojImage);
 	}
 }
 projects.display(); //calls the encapsulated function
+
+// adding project images to the resume
+
+
+
 
 //creating object4: "education" in array notation
 var education = {
 	"schools": [
 		{
 			"name" : "University of Colorado, Denver",
-			"location" : "Denver, CO",
+			"location" : "Denver",
 			"degree" : "Bachelor of Arts",
 			"major" : "Economics",
 			"dates" : "2004-2007",
@@ -217,14 +236,14 @@ $("#mapDiv").append(googleMap);
 if (bio.skills.length > 0) {
 	$("#header").append(HTMLskillsStart);
 }
-var formattedSkill = HTMLskills.replace("%data%",bio.skills[0]);
-$("#skills").append(formattedSkill);
-formattedSkill = HTMLskills.replace("%data%",bio.skills[1]);
-$("#skills").append(formattedSkill);
-formattedSkill = HTMLskills.replace("%data%",bio.skills[2]);
-$("#skills").append(formattedSkill);
-formattedSkill = HTMLskills.replace("%data%",bio.skills[3]);
-$("#skills").append(formattedSkill);
+	var formattedSkill = HTMLskills.replace("%data%",bio.skills[0]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%",bio.skills[1]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%",bio.skills[2]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%",bio.skills[3]);
+	$("#skills").append(formattedSkill);
 
 // separate variables for each skill are not necessary because after
 // each appending a substitution/replacement on var formattedSkill is
