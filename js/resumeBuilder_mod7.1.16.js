@@ -155,7 +155,9 @@ projects.display= function() {
 }
 projects.display(); //calls the encapsulated function
 
-// adding project images to the resume
+// adding formatted map to associated div
+$("#mapDiv").append(googleMap);
+
 
 
 
@@ -225,10 +227,6 @@ education.display= function() {
 	}
 };
 education.display();
-
-// adding formatted map to associated div
-$("#mapDiv").append(googleMap);
-
 
 
 // manual iteration over all skills in object.array bio.skills, the same
