@@ -1,27 +1,27 @@
 /*Action Items:
 
-	1). Run all code through validators (see proj details,rubric again here)
+    1). Run all code through validators (see proj details,rubric again here)
 
-	2). Clean up directory, syncUp GitHub, and submit
+    2). Clean up directory, syncUp GitHub, and submit
 */
 // creating object1: "bio"
 var bio = {
-        "name": "Greg Zimmer",
-        "role": "Web Developer",
-        "contacts": {
-            "mobile": "720-883-5359",
-            "email": "gcolezimmer@gmail.com",
-            "github": "fromunda6",
-            "location": "Denver"
-        },
-        "welcomeMessage": "Rending the veil since 1984",
-        "skills": [
-            "SQL", "Python", "Statistics", "Research"
-        ],
-        "biopic": "images/selfie_1.webp"
-    };
-    // 'hooking' new JS vars to JS-helper VARS, which are in turn assigned to html 'templates',
-    // & displaying the previously created JS VARS by appending/prepending to HTML sections
+    "name": "Greg Zimmer",
+    "role": "Web Developer",
+    "contacts": {
+        "mobile": "720-883-5359",
+        "email": "gcolezimmer@gmail.com",
+        "github": "fromunda6",
+        "location": "Denver"
+    },
+    "welcomeMessage": "Rending the veil since 1984",
+    "skills": [
+        "SQL", "Python", "Statistics", "Research"
+    ],
+    "biopic": "images/selfie_1.webp"
+};
+// 'hooking' new JS vars to JS-helper VARS, which are in turn assigned to html 'templates',
+// & displaying the previously created JS VARS by appending/prepending to HTML sections
 bio.display = function() {
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     $("#header").prepend(formattedName);
@@ -42,11 +42,12 @@ bio.display = function() {
     $("#header").append(formattedWelcome);
 
     $("#header").append(HTMLskillsStart);
-    for (skill=0; skill < bio.skills.length; skill++) {
 
-    var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-    $("#skills").append(formattedSkill);
-    };
+    for (skill = 0; skill < bio.skills.length; skill++) {
+
+        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+        $("#skills").append(formattedSkill);
+    }
 
     var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
     $("#header").append(formattedPic);
@@ -56,21 +57,21 @@ bio.display();
 
 // creating object2: "work"
 var work = {
-        "jobs": [{
-            "title": "Test Scorer",
-            "employer": "Pearson",
-            "dates": "05/16-present",
-            "location": "Centennial",
-            "description": "Analysis and scoring of middle school-level composition tests"
-        }, {
-            "title": "Data Prep Admin",
-            "employer": "IBM",
-            "dates": "02/15-09/15",
-            "location": "Boulder",
-            "description": "Data cleaning, documentation, limited automation, and process improvement"
-        }]
-    };
-    // wrapping the displaying of work history inside a function
+    "jobs": [{
+        "title": "Test Scorer",
+        "employer": "Pearson",
+        "dates": "05/16-present",
+        "location": "Centennial",
+        "description": "Analysis and scoring of middle school-level composition tests"
+    }, {
+        "title": "Data Prep Admin",
+        "employer": "IBM",
+        "dates": "02/15-09/15",
+        "location": "Boulder",
+        "description": "Data cleaning, documentation, limited automation, and process improvement"
+    }]
+};
+// wrapping the displaying of work history inside a function
 work.display = function() {
     for (job = 0; job < work.jobs.length; job++) { //both defines the loop and 'tags' each array-object as a "job"
         $("#workExperience").append(HTMLworkStart);
@@ -95,25 +96,25 @@ work.display();
 
 // creating object3: "projects" with object literal notation
 var projects = {
-        "projects": [{
-            "title": "Sunchaser",
-            "dates": "2016",
-            "description": "A nifty app to aid in landscape & architecture decision-making",
-        }, {
-            "title": "Arcade Game Clone",
-            "dates": "2016",
-            "description": "A recreation of a classic arcade game, demonstrating some mastery of JS",
+    "projects": [{
+        "title": "Sunchaser",
+        "dates": "2016",
+        "description": "A nifty app to aid in landscape & architecture decision-making",
+    }, {
+        "title": "Arcade Game Clone",
+        "dates": "2016",
+        "description": "A recreation of a classic arcade game, demonstrating some mastery of JS",
 
-        }, {
-            "title": "Neighborhood Map",
-            "dates": "2016",
-            "description": "An interactive map of the most important sites in my neighborhood",
-        }],
-        "images":["images/MntGraphic.png", "images/game.jpg", "images/city.jpg"]
-    };
-    // demonstrating encapsulation, &
-    // loop-assisted iteration-action over all key-value pairs in object.array
-    // projects.udacity
+    }, {
+        "title": "Neighborhood Map",
+        "dates": "2016",
+        "description": "An interactive map of the most important sites in my neighborhood",
+    }],
+    "images": ["images/MntGraphic.png", "images/game.jpg", "images/city.jpg"]
+};
+// demonstrating encapsulation, &
+// loop-assisted iteration-action over all key-value pairs in object.array
+// projects.udacity
 projects.display = function() {
     for (project = 0; project < projects.projects.length; project++) {
         $("#projects").append(HTMLprojectStart); //to the 'projects' <div>, append the <div> 'HTMLprojectStart',
@@ -129,9 +130,9 @@ projects.display = function() {
         $(".project-entry:last").append(formattedprojDesc);
     }
     projects.images.forEach(function(image) {
-            var formattedprojImage = HTMLprojectImage.replace("%data%", image);
+        var formattedprojImage = HTMLprojectImage.replace("%data%", image);
         $(".project-entry:last").append(formattedprojImage);
-    })
+    });
 };
 projects.display(); //calls the encapsulated function
 
@@ -143,27 +144,27 @@ $("#mapDiv").append(googleMap);
 
 //creating object4: "education" in array notation
 var education = {
-        "schools": [{
-            "name": "University of Colorado, Denver",
-            "location": "Denver",
-            "degree": "Bachelor of Arts",
-            "majors": ['Economics'],
-            "dates": "2004-2007",
-            "url": "http://www.ucdenver.edu/"
-        }],
-        "onlineCourses": [{
-            "title": "Front-End Web Developer Nanodegree",
-            "school": "Udacity",
-            "dates": "2016",
-            "url": "https://www.udacity.com/"
-        }, {
-            "title": "Introduction to Computer Science",
-            "school": "Udacity",
-            "dates": "2016",
-            "url": "https://www.udacity.com/"
-        }]
-    };
-    // wrapping the displaying of school history inside a function
+    "schools": [{
+        "name": "University of Colorado, Denver",
+        "location": "Denver",
+        "degree": "Bachelor of Arts",
+        "majors": ['Economics'],
+        "dates": "2004-2007",
+        "url": "http://www.ucdenver.edu/"
+    }],
+    "onlineCourses": [{
+        "title": "Front-End Web Developer Nanodegree",
+        "school": "Udacity",
+        "dates": "2016",
+        "url": "https://www.udacity.com/"
+    }, {
+        "title": "Introduction to Computer Science",
+        "school": "Udacity",
+        "dates": "2016",
+        "url": "https://www.udacity.com/"
+    }]
+};
+// wrapping the displaying of school history inside a function
 education.display = function() {
     for (college = 0; college < education.schools.length; college++) {
         $("#education").append(HTMLschoolStart);
@@ -182,8 +183,8 @@ education.display = function() {
         var formattedschoolMajor = HTMLschoolMajor.replace("%data%", education.schools[college].majors);
         $(".education-entry:last").append(formattedschoolMajor);
     }
-        $(".education-entry:last").append(HTMLonlineClasses);
-        for (course = 0; course < education.onlineCourses.length; course++) {
+    $(".education-entry:last").append(HTMLonlineClasses);
+    for (course = 0; course < education.onlineCourses.length; course++) {
 
         var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
         var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
@@ -209,17 +210,17 @@ $(document).click(function(loc) {
 });
 
 // function locationizer(work_obj) {
-// 	var workLocations = [];
+//  var workLocations = [];
 
-// 	for(job in work_obj.jobs) {
-// 		var newLocation = work_obj.jobs[job].location; //sets a new var the iterating-over of
-// 		// which ('compelled' by the 'for-in' loop which MUST evaluate each JOB[0,1] IN WORK_OBJ.JOBS)
-// 		// will produce an array of location values (.location) found at each index/position
-// 		// of the array "jobs" (jobs[0],jobs[1]), itself found inside the Object "work", which is
-// 		// passed to the function as a parameter
-// 		workLocations.push(newLocation);
-// 	}
-// 	return workLocations;
+//  for(job in work_obj.jobs) {
+//      var newLocation = work_obj.jobs[job].location; //sets a new var the iterating-over of
+//      // which ('compelled' by the 'for-in' loop which MUST evaluate each JOB[0,1] IN WORK_OBJ.JOBS)
+//      // will produce an array of location values (.location) found at each index/position
+//      // of the array "jobs" (jobs[0],jobs[1]), itself found inside the Object "work", which is
+//      // passed to the function as a parameter
+//      workLocations.push(newLocation);
+//  }
+//  return workLocations;
 // }
 
 // locationizer(job[0]);
@@ -236,6 +237,6 @@ function inName(engFirst, engLast) { //this works because the internationzlizeBu
     engLast = splitName[1];
     var intName = engFirst.slice(0, 1).toUpperCase() + engFirst.slice(1).toLowerCase() + " " + engLast.toUpperCase();
     return intName;
-};
+}
 //would call the inName function, were it not commented out
 // inName("greg","zimmer");
