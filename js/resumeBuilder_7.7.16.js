@@ -100,17 +100,18 @@ var projects = {
         "title": "Sunchaser",
         "dates": "2016",
         "description": "A nifty app to aid in landscape & architecture decision-making",
+        "images": ["images/MntGraphic.png", "images/game.jpg", "images/city.jpg"]
     }, {
         "title": "Arcade Game Clone",
         "dates": "2016",
         "description": "A recreation of a classic arcade game, demonstrating some mastery of JS",
-
+        "images": ["images/MntGraphic.png", "images/game.jpg", "images/city.jpg"]
     }, {
         "title": "Neighborhood Map",
         "dates": "2016",
         "description": "An interactive map of the most important sites in my neighborhood",
+        "images": ["images/MntGraphic.png", "images/game.jpg", "images/city.jpg"]
     }],
-    "images": ["images/MntGraphic.png", "images/game.jpg", "images/city.jpg"]
 };
 // demonstrating encapsulation, &
 // loop-assisted iteration-action over all key-value pairs in object.array
@@ -128,11 +129,16 @@ projects.display = function() {
 
         var formattedprojDesc = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
         $(".project-entry:last").append(formattedprojDesc);
+
+        // requires a nested for loop, as you must iterate through the array of images for each object in the parent array encountered in
+        // the outer loop
+        if ((projects.projects[project]).images.length > 0) {
+            for (image in projects.projects[project].images) {
+                var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+                $(".project-entry:last").append(formattedImage);
+            }
+        }
     }
-    projects.images.forEach(function(image) {
-        var formattedprojImage = HTMLprojectImage.replace("%data%", image);
-        $(".project-entry:last").append(formattedprojImage);
-    });
 };
 projects.display(); //calls the encapsulated function
 
