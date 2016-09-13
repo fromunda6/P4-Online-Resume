@@ -42,10 +42,11 @@ bio.display = function() {
     $("#header").append(formattedWelcome);
 
     $("#header").append(HTMLskillsStart);
+
     for (skill=0; skill < bio.skills.length; skill++) {
 
-    var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-    $("#skills").append(formattedSkill);
+        var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+        $("#skills").append(formattedSkill);
     };
 
     var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
