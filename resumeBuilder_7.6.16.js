@@ -5,7 +5,7 @@
 
 	2). Clean up directory, syncUp GitHub, and submit
 */
-// creating object1: "bio"
+// creating object1: "bio" (ME) per OOJS construction
 var bio = {
         "name": "Greg Zimmer",
         "role": "Web Developer",
@@ -21,9 +21,12 @@ var bio = {
         ],
         "biopic": "images/selfie_1.webp"
     };
-    // 'hooking' new JS vars to JS-helper VARS, which are in turn assigned to html 'templates',
+    // 'hooking' new JS vars to JS helper VARS, which are in turn assigned to html 'templates',
     // & displaying the previously created JS VARS by appending/prepending to HTML sections
 bio.display = function() {
+
+    // for example: new var (formattedName) assigned to 'dumb' JS var (HTMLHeaderName) existing only
+    // as a referent to the associated HTML
     var formattedName = HTMLheaderName.replace("%data%", bio.name);
     $("#header").prepend(formattedName);
 
@@ -36,6 +39,7 @@ bio.display = function() {
 
     var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
     var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
     // illustrating that multiple values can be appended to multiple elements in a single statement
     $("#topContacts, #footerContacts").append(formattedMobile, formattedEmail, formattedGithub, formattedLocation);
 
@@ -56,7 +60,7 @@ bio.display = function() {
 bio.display();
 
 
-// creating object2: "work"
+// creating object2: "work" in OBJECT-LITERAL notaions
 var work = {
         "jobs": [{
             "title": "Test Scorer",
@@ -299,7 +303,7 @@ bio.display = function() {
 bio.display();
 
 
-// creating object2: "work"
+// creating object2: "work", in object-literal notation
 var work = {
         "jobs": [{
             "title": "Test Scorer",
